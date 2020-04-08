@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 using Photon.Pun;
 using Photon.Realtime;
@@ -44,13 +45,17 @@ namespace ADM.DoubleDeckEuchre
         string playerName = "";
         string roomName = "";
 
+        EventSystem eventSystem;
+
         void Start()
-        {            
+        {
             PlayerPrefs.DeleteAll();
                         
             roomJoinUI.SetActive(false);
             buttonLoadArena.SetActive(false);
             teamSelectUI.SetActive(false);
+
+            eventSystem = EventSystem.current;
 
             // See if we are already connected to a room and if so, leave it
             if (PhotonNetwork.IsConnected
@@ -161,6 +166,7 @@ namespace ADM.DoubleDeckEuchre
             roomJoinUI.SetActive(true);
             buttonLoadArena.SetActive(false);
 
+            eventSystem.SetSelectedGameObject(playerNameField.gameObject, new BaseEventData(eventSystem));
         }
 
         public override void OnDisconnected(DisconnectCause cause)
@@ -204,7 +210,7 @@ namespace ADM.DoubleDeckEuchre
 
             // Push the lists back to the server
             PhotonNetwork.CurrentRoom.SetCustomProperties(customProperties);
-                    }
+        }
 
         public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
         {
@@ -330,5 +336,33 @@ namespace ADM.DoubleDeckEuchre
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }
 
+        // Update Method
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                if (eventSystem.currentSelectedGameObject.GetComponent<InputField>() != playerNameField)
+                {
+                    eventSystem.SetSelectedGameObject(playerNameField.gameObject, new BaseEventData(eventSystem));
+                }
+                else
+                {
+                    eventSystem.SetSelectedGameObject(roomNameField.gameObject, new BaseEventData(eventSystem));
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                if (roomNameField.text != "")
+                {
+                    JoinRoom();
+                }
+            }
+        }
     }
 }
