@@ -429,7 +429,7 @@ namespace ADM.DoubleDeckEuchre
         }
 
         /// <summary>
-        /// Greys out any cards that can't be played at the moment given the current grick
+        /// Greys out any cards that can't be played at the moment given the current trick
         /// </summary>
         public void DisableUnplayableCards()
         {
@@ -472,7 +472,7 @@ namespace ADM.DoubleDeckEuchre
             playerRightBidText.text = "Bid: ";
             playerTopBidText.text = "Bid: ";
 
-            // Loop through all bids up to this poitn
+            // Loop through all bids up to this position
             foreach (Bid b in bidList.GetBids())
             {
                 // Get absolute seat number for this bid
