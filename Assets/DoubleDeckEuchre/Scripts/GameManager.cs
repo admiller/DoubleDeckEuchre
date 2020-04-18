@@ -709,7 +709,7 @@ namespace ADM.DoubleDeckEuchre
                                     // Team 1 had the bid, so Team 2's score simply increments by their won tricks
                                     teamTwoScore += teamTwoTricks;
                                 }
-                                // If team 1 won, check to see if they made their bid
+                                // If team 2 won, check to see if they made their bid
                                 else
                                 {
                                     if (teamTwoTricks >= winningBid.trickNumber)
@@ -719,7 +719,7 @@ namespace ADM.DoubleDeckEuchre
                                     // Team two was euchred, they go negative
                                     else
                                     {
-                                        teamOneScore -= winningBid.trickNumber;
+                                        teamTwoScore -= winningBid.trickNumber;
                                     }
 
                                     // Team 2 had the bid, so Team 1's score simply increments by their won tricks
