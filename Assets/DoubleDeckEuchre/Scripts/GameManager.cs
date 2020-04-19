@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using Photon.Realtime;
@@ -618,6 +618,9 @@ namespace ADM.DoubleDeckEuchre
                     // Send an update that the kitty phase is complete and let the players know who goes first
                     Hashtable ht = new Hashtable();
                     ht.Add("GameMessage", "Discarding complete. " + RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " has the lead.");
+                    
+                    // Send properties to the server
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
                 }
             }
             // Handle clicking a card in our own hand during the actual play phase (not during bidding)
