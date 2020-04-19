@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 using Photon.Realtime;
@@ -326,7 +326,7 @@ namespace ADM.DoubleDeckEuchre
                 ht.Add("CurrentTurnSeatNumber", winningBid.seatNumber);
 
                 // Add a message so people see who won
-                ht.Add("GameMessge", RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " wins the bid with " + bid.trickNumber + " " + bid.suitName);
+                ht.Add("GameMessage", RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " wins the bid with " + bid.trickNumber + " " + bid.suitName);
 
                 // Make a new Trick object with the correct Seat Number
                 trick = new Trick(seatNumber);
@@ -366,7 +366,7 @@ namespace ADM.DoubleDeckEuchre
                 ht.Add("CurrentTurnSeatNumber", winningBid.seatNumber);
 
                 // Add a message so people see who won
-                ht.Add("GameMessge", RoomHelper.GetPlayerNameBySeatNumber(winningBid.seatNumber) + " wins the bid with " + winningBid.trickNumber + " " + winningBid.suitName);
+                ht.Add("GameMessage", RoomHelper.GetPlayerNameBySeatNumber(winningBid.seatNumber) + " wins the bid with " + winningBid.trickNumber + " " + winningBid.suitName);
 
                 // Make a new Trick object with the correct Seat Number
                 trick = new Trick(winningBid.seatNumber);
