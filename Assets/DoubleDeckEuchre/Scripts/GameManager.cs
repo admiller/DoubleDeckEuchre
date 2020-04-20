@@ -326,7 +326,7 @@ namespace ADM.DoubleDeckEuchre
                 ht.Add("CurrentTurnSeatNumber", winningBid.seatNumber);
 
                 // Add a message so people see who won
-                ht.Add("GameMessge", RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " wins the bid with " + bid.trickNumber + " " + bid.suitName);
+                ht.Add("GameMessage", RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " wins the bid with " + bid.trickNumber + " " + bid.suitName);
 
                 // Make a new Trick object with the correct Seat Number
                 trick = new Trick(seatNumber);
@@ -366,7 +366,7 @@ namespace ADM.DoubleDeckEuchre
                 ht.Add("CurrentTurnSeatNumber", winningBid.seatNumber);
 
                 // Add a message so people see who won
-                ht.Add("GameMessge", RoomHelper.GetPlayerNameBySeatNumber(winningBid.seatNumber) + " wins the bid with " + winningBid.trickNumber + " " + winningBid.suitName);
+                ht.Add("GameMessage", RoomHelper.GetPlayerNameBySeatNumber(winningBid.seatNumber) + " wins the bid with " + winningBid.trickNumber + " " + winningBid.suitName);
 
                 // Make a new Trick object with the correct Seat Number
                 trick = new Trick(winningBid.seatNumber);
@@ -618,6 +618,9 @@ namespace ADM.DoubleDeckEuchre
                     // Send an update that the kitty phase is complete and let the players know who goes first
                     Hashtable ht = new Hashtable();
                     ht.Add("GameMessage", "Discarding complete. " + RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " has the lead.");
+                    
+                    // Send properties to the server
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
                 }
             }
             // Handle clicking a card in our own hand during the actual play phase (not during bidding)
