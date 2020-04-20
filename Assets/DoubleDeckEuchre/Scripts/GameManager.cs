@@ -433,7 +433,7 @@ namespace ADM.DoubleDeckEuchre
         /// </summary>
         public void DisableUnplayableCards()
         {
-            for (int i = 0; i < hand.Count; i++)
+            for (int i = 0; i < cardObjects.Count; i++)
             {
                 // Get the card game object
                 GameObject cardGameObject = cardObjects[i];
