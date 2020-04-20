@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class Trick
 
     public void PlayCard(Card card)
     {
-        // If this trick isn't full yet, add the card.  This assumes that CanPlayCard has been called as validatoin
+        // If this trick isn't full yet, add the card.  This assumes that CanPlayCard has been called as validation
         if (cards.Count < 4)
         {
             cards.Add(card);
