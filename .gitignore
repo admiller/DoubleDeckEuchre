@@ -46,5 +46,11 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+<<<<<<< HEAD
 Double Deck Euchre.exe
 Double Deck Euchre.exe
+=======
+
+# BuildInfo
+**/build_info.txt
+>>>>>>> 5a0a3f4689c3abf5c77f66f4202488769a9c3f6b

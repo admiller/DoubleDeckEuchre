@@ -326,7 +326,7 @@ namespace ADM.DoubleDeckEuchre
                 ht.Add("CurrentTurnSeatNumber", winningBid.seatNumber);
 
                 // Add a message so people see who won
-                ht.Add("GameMessge", RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " wins the bid with " + bid.trickNumber + " " + bid.suitName);
+                ht.Add("GameMessage", RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " wins the bid with " + bid.trickNumber + " " + bid.suitName);
 
                 // Make a new Trick object with the correct Seat Number
                 trick = new Trick(seatNumber);
@@ -366,7 +366,7 @@ namespace ADM.DoubleDeckEuchre
                 ht.Add("CurrentTurnSeatNumber", winningBid.seatNumber);
 
                 // Add a message so people see who won
-                ht.Add("GameMessge", RoomHelper.GetPlayerNameBySeatNumber(winningBid.seatNumber) + " wins the bid with " + winningBid.trickNumber + " " + winningBid.suitName);
+                ht.Add("GameMessage", RoomHelper.GetPlayerNameBySeatNumber(winningBid.seatNumber) + " wins the bid with " + winningBid.trickNumber + " " + winningBid.suitName);
 
                 // Make a new Trick object with the correct Seat Number
                 trick = new Trick(winningBid.seatNumber);
@@ -433,7 +433,7 @@ namespace ADM.DoubleDeckEuchre
         /// </summary>
         public void DisableUnplayableCards()
         {
-            for (int i = 0; i < hand.Count; i++)
+            for (int i = 0; i < cardObjects.Count; i++)
             {
                 // Get the card game object
                 GameObject cardGameObject = cardObjects[i];
@@ -618,6 +618,9 @@ namespace ADM.DoubleDeckEuchre
                     // Send an update that the kitty phase is complete and let the players know who goes first
                     Hashtable ht = new Hashtable();
                     ht.Add("GameMessage", "Discarding complete. " + RoomHelper.GetPlayerNameBySeatNumber(seatNumber) + " has the lead.");
+                    
+                    // Send properties to the server
+                    PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
                 }
             }
             // Handle clicking a card in our own hand during the actual play phase (not during bidding)
@@ -709,7 +712,7 @@ namespace ADM.DoubleDeckEuchre
                                     // Team 1 had the bid, so Team 2's score simply increments by their won tricks
                                     teamTwoScore += teamTwoTricks;
                                 }
-                                // If team 1 won, check to see if they made their bid
+                                // If team 2 won, check to see if they made their bid
                                 else
                                 {
                                     if (teamTwoTricks >= winningBid.trickNumber)
@@ -719,7 +722,7 @@ namespace ADM.DoubleDeckEuchre
                                     // Team two was euchred, they go negative
                                     else
                                     {
-                                        teamOneScore -= winningBid.trickNumber;
+                                        teamTwoScore -= winningBid.trickNumber;
                                     }
 
                                     // Team 2 had the bid, so Team 1's score simply increments by their won tricks
