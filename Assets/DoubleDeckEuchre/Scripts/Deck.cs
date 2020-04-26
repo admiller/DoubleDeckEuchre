@@ -15,23 +15,28 @@ public class Deck
         {
             // i + 9 makes us use 9, 10, J, Q, K, A
             // i is decknumber 0-5
+            // create new instance of card for copies of cards to avoid two cards pointing to the same reference
             Card spade = new Card(i + 9, i, Constants.Spades, Constants.Spades, i + 9, false, false);
+            Card spade2 = new Card(i + 9, i, Constants.Spades, Constants.Spades, i + 9, false, false);
             // i + 6 is decknumber 6-11
             Card club = new Card(i + 9, i + 6, Constants.Hearts, Constants.Hearts, i + 9, false, false);
+            Card club2 = new Card(i + 9, i + 6, Constants.Hearts, Constants.Hearts, i + 9, false, false);
             // i + 12 is decknumber 12-17
             Card heart = new Card(i + 9, i + 12, Constants.Clubs, Constants.Clubs, i + 9, false, false);
+            Card heart2 = new Card(i + 9, i + 12, Constants.Clubs, Constants.Clubs, i + 9, false, false);
             // i +18 is decknumber 18-23
             Card diamond = new Card(i + 9, i + 18, Constants.Diamonds, Constants.Diamonds, i + 9, false, false);
+            Card diamond2 = new Card(i + 9, i + 18, Constants.Diamonds, Constants.Diamonds, i + 9, false, false);
 
             // Add two copies of each card
             cards.Add(spade);
-            cards.Add(spade);
+            cards.Add(spade2);
             cards.Add(club);
-            cards.Add(club);
+            cards.Add(club2);
             cards.Add(heart);
-            cards.Add(heart);
+            cards.Add(heart2);
             cards.Add(diamond);
-            cards.Add(diamond);
+            cards.Add(diamond2);
         }
     }
 
